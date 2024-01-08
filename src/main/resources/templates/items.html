@@ -3,19 +3,28 @@
 <head>
 <meta charset="UTF-8">
 <title>商品一覧</title>
+<link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
 	<header>
-		<h1>サンプルショッピング</h1>
-		<p><span class="login_user" th:text="${@account.name}"></span>さんがログイン中 <a href="/logout">ログアウト</a></p>
+		<h1><a href="/items">サンプルショッピング</a></h1>
+		<p><span class="login_user" th:text="${@account.name}">田中一郎</span>さんがログイン中 <a href="/logout">ログアウト</a></p>
 	</header>
+	<hr />
+	<nav>
+		<a href="#">全商品</a>
+		<a href="#">本</a>
+		<a href="#">DVD</a>
+		<a href="#">ゲーム</a>
+		<a href="#">カートを見る</a>
+	</nav>
 	<main>
 		<articvle>
-			
 		</articvle>
 	</main>
+	<hr />
 	<footer>
-		<dim class="copyright">&copy; ABCショップ</dim>
+		<div class="copyright">&copy; ABCショップ</div>
 	</footer>
 </body>
 </html>
