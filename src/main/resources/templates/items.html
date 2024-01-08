@@ -6,10 +6,7 @@
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-	<header>
-		<h1><a href="/items">サンプルショッピング</a></h1>
-		<p><span class="login_user" th:text="${@account.name}">田中一郎</span>さんがログイン中 <a href="/logout">ログアウト</a></p>
-	</header>
+	<header th:replace="parts/header"></header>
 	<hr />
 	<nav>
 		<a href="#">全商品</a>
@@ -23,8 +20,6 @@
 		</articvle>
 	</main>
 	<hr />
-	<footer>
-		<div class="copyright">&copy; ABCショップ</div>
-	</footer>
+	<footer th:replace="parts/footer"></footer>
 </body>
 </html>
