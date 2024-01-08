@@ -27,10 +27,10 @@ public class AuthController {
 	}
 	
 	// ログイン実行
-	@PostMapping("/login")	   // seq:12.2
+	@PostMapping("/login")	   	  // seq:12.2
 	public String login(@RequestParam("name") String name) {
-		account.setName(name); // seq:12.3
-		return "items"; 	   // seq:12.4
+		account.setName(name); 	  // seq:12.3
+		return "redirect:/items"; // seq:12.4
 	}
 	
 	// ログアウト処理
