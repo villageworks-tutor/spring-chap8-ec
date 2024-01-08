@@ -7,7 +7,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.example.demo.entity.Category;
 import com.example.demo.entity.Item;
+import com.example.demo.repository.CategoryRepository;
 import com.example.demo.repository.ItemRepository;
 
 
@@ -15,10 +17,17 @@ import com.example.demo.repository.ItemRepository;
 public class ItemController {
 	
 	@Autowired
-	ItemRepository itemRepository; // seq:20.2
+	CategoryRepository categoryRepository;  // seq:20.1
+	
+	@Autowired
+	ItemRepository itemRepository; 			// seq:20.2
 	
 	@GetMapping("/items")	// 20.3
 	public String index(Model model) {
+		// カテゴリーリストを取得
+		List<Category> categoryList = categoryRepository.findAll(); // seq:20.4
+		// 取得したカテゴリーリストをスコープに登録
+		model.addAttribute("categoryList", categoryList);			// seq:20.5
 		// すべての商品リストを取得
 		List<Item> itemList = itemRepository.findAll(); // seq:20.6
 		// 取得した商品リストをスコープに登録

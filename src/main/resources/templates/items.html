@@ -10,9 +10,7 @@
 	<hr />
 	<nav>
 		<a href="#">全商品</a>
-		<a href="#">本</a>
-		<a href="#">DVD</a>
-		<a href="#">ゲーム</a>
+		<a th:each="category:${categoryList}" th:href="'/items?categoryId=' + ${category.id}">[[${category.name}]]</a>
 		<a href="#">カートを見る</a>
 	</nav>
 	<main>
