@@ -73,4 +73,8 @@ nav a {
   font-size: small;
 }
 
+td[colspan="5"] {
+  text-align: right;
+}
+
 /*# sourceMappingURL=style.css.map */
