@@ -43,8 +43,9 @@ group Springフレームワーク
 	end
 	autonumber resume
 end group
-
+autonumber stop
 cartController <-- itemRepository: item
+autonumber resume
 deactivate itemRepository
 
 cartController -> cartController: item.setQuantity(quantity)
