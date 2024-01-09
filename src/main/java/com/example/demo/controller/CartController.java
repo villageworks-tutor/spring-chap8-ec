@@ -11,6 +11,7 @@ import com.example.demo.model.Cart;
 import com.example.demo.repository.ItemRepository;
 
 
+
 @Controller
 public class CartController {
 	
@@ -20,11 +21,13 @@ public class CartController {
 	@Autowired
 	ItemRepository itemRepository; // seq:32.2
 	
+	// カート画面表示
 	@GetMapping("/cart") // seq:31.1
 	public String index() {
 		return "cart";   // seq:31.2
 	}
 	
+	// カートに商品追加
 	@PostMapping("/cart/add") // seq:32.3
 	public String add(
 			@RequestParam(name = "itemId", defaultValue = "") Integer itemId,
@@ -38,5 +41,13 @@ public class CartController {
 		return "redirect:/cart";    // seq:32.7
 	}
 	
+	// カートから商品削除
+	@PostMapping("/cart/delete") // seq:33.1
+	public String delete(
+			@RequestParam(name = "itemId", defaultValue = "") Integer itemId) {
+		// 指定された商品をカートから削除
+		cart.delete(itemId);     // seq:33.2
+		return "redirect:/cart"; // seq:33.3
+	}
 	
 }
