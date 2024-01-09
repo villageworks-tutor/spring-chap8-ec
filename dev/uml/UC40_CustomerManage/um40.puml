@@ -20,11 +20,13 @@ return [view] customerForm
 
 == UC 42 顧客情報を確認する ==
 autonumber 42.1
-user -> orderController: [POST] /confirm\n confirm(name: String, address: String, tel: String, email: String, model: Model)
+user -> orderController: [POST] /order/confirm\n confirm(name: String, address: String, tel: String, email: String, model: Model)
 activate orderController
 orderController -> customer: new Customer(name, address, tel, email)
 activate customer
+autonumber stop
 orderController <-- customer: customer
+autonumber resume
 deactivate customer
 orderController -> orderController: model.addAttribute("customer", customer)
 user <-- orderController: [view] confirm
