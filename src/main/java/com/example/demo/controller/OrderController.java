@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.time.LocalDate;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,8 +10,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.entity.Customer;
+import com.example.demo.entity.Order;
 import com.example.demo.model.Cart;
 import com.example.demo.repository.CustomerRepository;
+import com.example.demo.repository.OrderRepository;
 
 
 
@@ -19,8 +23,11 @@ public class OrderController {
 	@Autowired // seq:41.1
 	Cart cart;
 	
-	@Autowired
+	@Autowired // seq:43.2
 	CustomerRepository customerRepository;
+	
+	@Autowired // seq:43.3
+	OrderRepository orderRepository;
 	
 	@GetMapping("/order")      // seq:41.2
 	public String index() {
@@ -49,13 +56,24 @@ public class OrderController {
 			@RequestParam(name = "tel", defaultValue = "") String tel,
 			@RequestParam(name = "email", defaultValue = "") String email,
 			Model model) {
+		
+		// 顧客情報の永続化
 		// リクエストパラメータをもとに顧客のインスタンスを生成
 		Customer customer = new Customer(name, address, tel, email); // seq:43.6
 		// 顧客インスタンスの永続化
-		customerRepository.save(customer);
+		customerRepository.save(customer); // seq:43.7
 		
+		// 注文永続化
+		// リクエストパラメータをもとに注文のインスタンスを生成
+		LocalDate today = LocalDate.now();         // seq:43.8
+		Integer customerId = customer.getId();     // seq:43.9
+		Integer totalPrice = cart.getTotalPrice(); // seq:43.10
+		Order order = new Order(customerId, today, totalPrice); // seq:43.11
+		// 注文インスタンのインスタンス化
+		orderRepository.save(order); // seq:43.12
 		
-		return "ordered";
+		// 画面遷移
+		return "ordered"; // seq:43.
 	}
 	
 	
