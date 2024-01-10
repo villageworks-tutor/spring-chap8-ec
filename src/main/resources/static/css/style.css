@@ -73,6 +73,17 @@ nav a {
   font-size: small;
 }
 
+.complete_message {
+  margin: 40px 0 0px;
+  font-size: large;
+}
+
+.orderNumber {
+  color: tomato;
+  margin: 20px 0 20px;
+  font-weight: bold;
+}
+
 td[colspan="5"] {
   text-align: right;
 }
